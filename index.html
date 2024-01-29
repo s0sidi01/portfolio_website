@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang= "en">
+    <head>
+        <meta charset= "UTF-8">
+        <meta http-equi="X-UA-Compatible"content="IR=edge">
+        <meta name="viewport"content = "width=device-width, initial-scale=1.0">
+        <title>My Portfolio</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://kit.fontawesome.com/81faec231d.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+    <div id="header">
+        <div class="container">
+            <nav>
+                <img scr="personal-portfolio\phone-background.png.png" class=" logo">
+                <ul id="sidemenu">
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <i class ="fas fa-times" on click="closemenu()"></i>
+                </ul>
+                <i class="fas fa-bars" onclick="openmenu()"></i>
+            </nav>
+            <div class="header-text">
+                <p>My Portfolio</p>
+                <h1>Hello, I'm <span>Sonia</span> Sidi</h1>
+         </div>
+    </div>
+</div>
+<!--about-->
+
+<div id="about">
+        <div class="container">
+            <div class="row">
+                <div class="about-col-1">
+                    <img src="/user.png" >
+
+                </div>
+                <div class="about-col-2">
+                    <h1 class="sub-title">About Me</h1>
+                <p>Welcome to my Website,<br>A passionate and motivated student with a keen interest in Computer Science and Engineering.
+                    This portfolio showcases my journey, projects, and the skills I've acquired along the way.<br>
+                    Feel free to explore and learn more about what I love to do and don't hesitate to reach out to me!</p> 
+
+                    <div class="tab-titles">
+                        <p class="tab-links active-link" onclick="opentab('skills')">Skills/Coursework</p>
+                        <p class="tab-links" onclick="opentab('work experience')">Work Experience</p>
+                        <p class="tab-links" onclick="opentab('education')">Education</p>
+                    </div>
+                    <div class="tab-contents active-tab" id="skills">
+                        <ul>
+                            <li><span>C,C++ Programming</span><br></li>
+                            <li><span>Python Programming</span><br></li>
+                            <li><span>Data Structures</span><br></li>
+                            <li><span>Calculus III & Differential Equations</span><br></li>
+                            <li><span>Multilingual</span><br></li>
+                            </ul>
+                </div>
+                <div class="tab-contents" id="work experience">
+                    <ul>
+                        <li><span>2021 - Current:</span><br>Ramp Agent</span><br></li>
+                        <li><span>2019 - 2021: </span><br> Passenger Agent Assistant</span><br></li>
+                                                                                                                                   
+                        </ul>
+            </div>
+            <div class="tab-contents" id="education">
+                <ul>
+                    <li><span>Computer Science and Engineering</span><br></li>
+                    <li><span>Associate of Science</span><br></li>
+                
+                    </ul>
+        </div>
+            </div>
+        </div>
+</div>
+<!-- ----------contact------------- -->
+<div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="contact-left">
+                <h1 class="sub-title">Contact Me<br></h1>
+                <p><i class="fa-solid fa-envelope"></i> s0sidi01@louisville.edu</p>
+                <p><i class="fas fa-phone-square-alt"></i> (312) 208-6461</p>
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/sonia-sidi-b6ba652a8/"><i class="fa-brands fa-linkedin-in"></i>></a>
+                </div>
+                <!--<a href="/resume.pdf" class="btn btn2">Download Resume</a>-->
+                <a href="/Resume.pdf" download class="btn btn2">Download Resume</a>
+            </div>
+            <div class="contact-right">
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="Email" placeholder="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <button type="submit" class="btn btn2">Submit</button>
+                </form>
+                <span id="msg"></span>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>Copyright © Sonia. <i class="fas fa-heart"></i> </a></p>
+    </div>
+</div>
+
+
+
+<script>
+
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+
+    function opentab(tabname){
+        for(tablink of tablinks){
+            tablink.classList.remove("active-link");
+        }
+        for(tabcontent of tabcontents){
+            tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab");
+    }
+
+</script>
+
+<script>
+
+    var sidemeu = document.getElementById("sidemenu");
+
+    function openmenu(){
+        sidemeu.style.right = "0";
+    }
+    function closemenu(){
+        sidemeu.style.right = "-200px";
+    }
+
+</script>
+<script>
+    
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxU7jvaeqUvdu9m6NLHWCnpHftmTpdVfXXt-u3mEEXrCy3cBujr1yP9_gKHiBpKjVU/exec'
+  const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML = "Message sent successfully"
+            setTimeout(function(){
+                msg.innerHTML = ""
+            },5000)
+            form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+</body>
+</html>
